@@ -1,0 +1,76 @@
+version: "3"
+services:
+  elasticsearch:
+    image: elasticsearch:6.5.4
+    container_name: node1
+    restart: always
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ../config/es-1.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ../data/node1:/usr/share/elasticsearch/data
+      - ../config/jvm.options:/usr/share/elasticsearch/config/jvm.options
+    networks:
+      - net-es
+
+  elasticsearch-1:
+    image: elasticsearch:6.5.4
+    container_name: node2
+    restart: always
+    ulimits: # 必须
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "9201:9200"
+      - "9301:9300"
+    volumes:
+      - ../config/es-2.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ../data/node2:/usr/share/elasticsearch/data
+      - ../config/jvm.options:/usr/share/elasticsearch/config/jvm.options
+    networks:
+      - net-es
+  elasticsearch-2:
+    image: elasticsearch:6.5.4
+    container_name: node3
+    restart: always
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "9202:9200"
+      - "9302:9300"
+    volumes:
+      - ../config/es-3.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ../data/node3:/usr/share/elasticsearch/data
+      - ../config/jvm.options:/usr/share/elasticsearch/config/jvm.options
+    networks:
+      - net-es
+
+  kibana:
+    image: kibana:6.5.4
+    container_name: kibana-cluster
+    restart: always
+    networks:
+      - net-es
+    ports:
+      - "5601:5601"
+    volumes:
+      - ../config/kibana.yml:/usr/share/kibana/config/kibana.yml
+networks:
+  net-es:

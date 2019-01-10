@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  master:
+    image: singularities/spark
+    command: start-spark master
+    hostname: master
+    ports:
+      - "6066:6066"
+      - "7070:7070"
+      - "8080:8080"
+      - "50070:50070"
+    container_name: spark-master
+  worker:
+    image: singularities/spark
+    command: start-spark worker master
+    environment:
+      SPARK_WORKER_CORES: 1
+      SPARK_WORKER_MEMORY: 2g
+    links:
+      - master
+    container_name: spark-worker

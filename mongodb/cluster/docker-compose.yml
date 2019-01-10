@@ -1,0 +1,24 @@
+version: '3'
+services:
+  master:
+    image: mongo:4.0.0
+    volumes:
+      - ../data/replset/rs1:/data/db
+    command: mongod --dbpath /data/db --replSet newset --oplogSize 128
+    container_name: mongo-master
+    ports:
+      - "27017:27017"
+  slave:
+    image: mongo:4.0.0
+    volumes:
+      - ../data/replset/rs2:/data/db
+    command: mongod --dbpath /data/db --replSet newset --oplogSize 128
+    ports:
+      - "27018:27017"
+    container_name: mongo-slave
+  myarbiter:
+    image: mongo:4.0.0
+    command: mongod --dbpath /data/db --replSet newset --smallfiles --oplogSize 128
+    ports:
+      - "27019:27017"
+    container_name: mongo-myarbiter
