@@ -7,7 +7,6 @@ services:
     expose:                                                         
       - "6123"                                                 
     command: jobmanager   
-    restart: always
     container_name: flink-jobmanager                                  
     # depends_on:                                                           
     #   - zookeeper                                                          
@@ -25,7 +24,6 @@ services:
       # - zookeeper
       # - hadoop
     command: taskmanager
-    restart: always
     container_name: flink-taskmanager            
   #   links:
   #     - "jobmanager"

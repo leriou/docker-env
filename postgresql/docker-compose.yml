@@ -2,7 +2,6 @@ version: '3.1'
 services:
   post:
     image: postgres:11.1-alpine
-    restart: always
     container_name: postgresql
     ports:
       - "127.0.0.1:5432:5432"

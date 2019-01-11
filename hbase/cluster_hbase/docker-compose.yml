@@ -8,7 +8,6 @@ services:
       - "50070:50070"
       - "8088:8088"
       - "16010:16010"
-    restart: always
   slave1: 
     image: harisekhon/hbase:2.0
     container_name: slave1
@@ -24,5 +23,4 @@ services:
       - slave1
     ports:
       - "19012:22"
-    restart: always
 
