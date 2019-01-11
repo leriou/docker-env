@@ -1,0 +1,6 @@
+pymongo
+PyMySql
+elasticsearch
+redis
+voila
+jieba

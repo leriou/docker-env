@@ -1,0 +1,14 @@
+version: "3"
+services:
+  jupyter:
+    image: leriou/jupyter:v3
+    container_name: jupyter
+    ports:
+      - "127.0.0.1:8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - CHOWN_HOME=yes
+      - GRANT_SUDO=yes
+      - NB_UID=root
+    volumes:
+      - ./data:/home/jovyan/work

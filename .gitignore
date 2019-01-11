@@ -1,3 +1,4 @@
 .vscode
 
-*/data/*
+*/*/data/*
+docker-compose/zeppelin/flink

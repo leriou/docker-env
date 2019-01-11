@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wp
+spec:
+  selector:
+    matchLabels:
+      app: wp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wp
+    spec:
+      containers:
+      - name: wrdpress
+        image: wordpress:5.4.2
+        workingDir: /var/www/html
+        ports: 
+        - containerPort: 80
+        env:
+        - name: WORDPRESS_DB_PASSWORD
+          value: "123456"
+        volumeMounts:
+        - mountPath: "/var/www/html"
+          name: wp-vol
+      volumes:
+      - name: wp-vol
+        hostPath:
+          path: /var/tmp/html
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: wp-svc
+  labels:
+    name: wp-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: wp
+  ports:
+  - port: 80
+    targetPort: 80

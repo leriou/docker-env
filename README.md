@@ -1,7 +1,20 @@
-# Docker本地伪集群一键部署
+# 常用容器服务
 
-# 依赖
+## docker-compose
 
-`docker`  容器基础
+docker-compose文件夹中都是基于docker-compose搭建的服务
 
-`docker-compose` docker编排工具
+使用方式：
+
+```shell
+cd elasticsearch
+docker-compose up -d
+```
+
+## k8s
+
+基于k8s的服务搭建方式
+```shell
+cd mysql
+kubectl create -f deployment.yaml
+```

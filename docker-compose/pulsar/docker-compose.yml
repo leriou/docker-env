@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  pulsar:
+    image: apachepulsar/pulsar:2.6.0
+    container_name: "pulsar"
+    command: bin/pulsar standalone
+    hostname: pulsar
+    ports:
+      - "18081:8080"
+      - "6650:6650"
+    restart: unless-stopped
+    volumes:
+      - "./data/:/pulsar/data"
+  dashboard:
+    image: apachepulsar/pulsar-manager:latest
+    container_name: "pulsar-manager"
+    ports:
+      - "9527:9527"
+      - "7750:7750"
+    depends_on:
+      - pulsar
+    links:
+      - pulsar
+    volumes:
+      - "./data/:/data"
+    environment:
+      REDIRECT_HOST: "http://127.0.0.1"
+      REDIRECT_PORT: "9527"
+      DRIVER_CLASS_NAME: "org.postgresql.Driver"
+      URL: "jdbc:postgresql://127.0.0.1:5432/pulsar_manager"
+      USERNAME: "pulsar"
+      PASSWORD: "pulsar"
+      LOG_LEVEL: "DEBUG"
