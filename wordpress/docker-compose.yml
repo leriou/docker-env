@@ -9,7 +9,7 @@ mysql:
      - ./data/mysql:/var/lib/mysql
     container_name: mysql
 web:
-    image: wordpress:5.0.0
+    image: wordpress:5.0.3
     links:
      - mysql
     environment:
