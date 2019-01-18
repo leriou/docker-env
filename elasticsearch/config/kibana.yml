@@ -3,4 +3,10 @@
 server.name: kibana
 server.host: "0"
 elasticsearch.url: http://elasticsearch:9200
+
+xpack.monitoring.enabled: true
+xpack.monitoring.kibana.collection.enabled: true
+xpack.monitoring.kibana.collection.interval: 10000
+xpack.monitoring.ui.enabled: true
 xpack.monitoring.ui.container.elasticsearch.enabled: true
+xpack.monitoring.collection.enabled: true
