@@ -10,7 +10,7 @@ http.cors.enabled: true
 http.cors.allow-origin: "*"
 
 discovery.zen.ping.unicast.hosts: ["elasticsearch:9300", "elasticsearch-1:9300", "elasticsearch-2:9300"]
-discovery.zen.minimum_master_nodes: 1
+discovery.zen.minimum_master_nodes: 2
 discovery.zen.ping_timeout: 2s
 
 bootstrap.memory_lock: true
