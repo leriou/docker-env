@@ -1,7 +1,7 @@
 version: "3"
 services:
   elasticsearch:
-    image: elasticsearch:6.5.4
+    image: elasticsearch:6.6.0
     container_name: elasticsearch
     ports:
       - "9200:9200"
@@ -13,7 +13,7 @@ services:
       - net-es
 
   kibana:
-    image: kibana:6.5.4
+    image: kibana:6.6.0
     container_name: kibana
     volumes:
       - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml
