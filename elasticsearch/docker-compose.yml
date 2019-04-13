@@ -1,11 +1,14 @@
 version: "3"
 services:
   elasticsearch:
-    image: elasticsearch:6.6.0
+    image: elasticsearch:7.0.0
     container_name: elasticsearch
     ports:
       - "9200:9200"
       - "9300:9300"
+    environment:
+      - "discovery.type=single-node"
+      - "node.name=e1"
     volumes:
       - ./data:/usr/share/elasticsearch/data
       - ./config/jvm.options:/usr/share/elasticsearch/config/jvm.options
@@ -13,10 +16,10 @@ services:
       - net-es
 
   kibana:
-    image: kibana:6.6.0
+    image: kibana:7.0.0
     container_name: kibana
-    volumes:
-      - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    environment:
+      - "xpack.monitoring.ui.container.elasticsearch.enabled"
     ports:
       - "5601:5601"
     networks:
