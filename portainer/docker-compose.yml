@@ -1,7 +1,7 @@
 version: "3"
 services:
-  redis:
-    image: portainer/portainer
+  portainerss:
+    image: portainer/portainer:1.20.2
     container_name: portainer
     restart: always
     ports:
