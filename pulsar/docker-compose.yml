@@ -1,7 +1,7 @@
 version: "3"
 services:
   pulsar:
-    image: apachepulsar/pulsar:2.3.0
+    image: apachepulsar/pulsar:2.3.1
     container_name: pulsar
     ports:
       - "6650:6650"
