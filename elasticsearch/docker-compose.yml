@@ -1,7 +1,7 @@
 version: "3"
 services:
   elasticsearch:
-    image: elasticsearch:7.0.0
+    image: elasticsearch:7.1.0
     container_name: elasticsearch
     ports:
       - "9200:9200"
@@ -16,7 +16,7 @@ services:
       - net-es
 
   kibana:
-    image: kibana:7.0.0
+    image: kibana:7.1.0
     container_name: kibana
     environment:
       - "xpack.monitoring.ui.container.elasticsearch.enabled"
