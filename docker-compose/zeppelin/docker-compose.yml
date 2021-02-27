@@ -4,7 +4,7 @@ services:
     image: apache/zeppelin:0.9.0
     container_name: zeppelin
     volumes:
-      - ./conf/shiro.ini:/zeppelin/conf/shiro.ini
+      # - ./conf/shiro.ini:/zeppelin/conf/shiro.ini
       - ./flink/flink-1.10.2:/zeppelin/flink
     ports:
       - "127.0.0.1:8080:8080"
