@@ -1,4 +1,4 @@
-FROM jupyter/all-spark-notebook:latest
+FROM jupyter/tensorflow-notebook
 
 WORKDIR /work
 
