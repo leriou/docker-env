@@ -26,13 +26,6 @@ services:
       - "5601:5601"
     networks:
       - net-common    
-
-  # cerebro:
-  #   image: lmenezes/cerebro   
-  #   container_name: cerebro
-  #   ports:
-  #     - "9201:9000"
-  #   networks:
-      # - net-common    
+       
 networks:
   net-common:

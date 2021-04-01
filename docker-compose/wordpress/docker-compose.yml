@@ -13,7 +13,7 @@ services:
         container_name: mysql
         
     web:
-        image: wordpress:5.4.2
+        image: wordpress:latest
         links:
         - mysql
         environment:

@@ -3,8 +3,6 @@ services:
   zeppelin:
     image: apache/zeppelin:0.9.0
     container_name: zeppelin
-    # volumes:
-    #   - ./data:/zeppelin/notebook
     ports:
       - "127.0.0.1:8080:8080"
     
