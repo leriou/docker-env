@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: wrdpress
-        image: wordpress:5.4.2
+        image: wordpress:latest
         workingDir: /var/www/html
         ports: 
         - containerPort: 80

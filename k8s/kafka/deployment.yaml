@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zk
+spec:
+  selector:
+    matchLabels:
+      app: zookeeper
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      containers:
+        - name: zookeeper
+          image: docker.io/bitnami/zookeeper:3
+          ports:
+          - containerPort: 2181    
+          env:
+          - name: ALLOW_ANONYMOUS_LOGIN
+            value: "yes"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka
+spec:
+  selector:
+    matchLabels:
+      app: kafka
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+        - name: kafka
+          image: docker.io/bitnami/kafka:2.7.0
+          ports:
+          - containerPort: 9092
+          env:
+          - name: KAFKA_CFG_ZOOKEEPER_CONNECT
+            value: "zookeeper:2181"
+          - name: ALLOW_PLAINTEXT_LISTENER
+            value: "yes"
+
+     
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: zookeeper
+  labels:
+    name: zk-svc
+spec:
+  selector:
+    app: zookeeper
+  ports:
+  - port: 2181 
+    targetPort: 2181
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+  labels:
+    name: kafka
+spec:
+  selector:
+    app: kafka
+  ports:
+  - port: 9092 
+    targetPort: 9092
+  type: LoadBalancer
