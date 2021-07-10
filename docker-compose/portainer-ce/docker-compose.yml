@@ -1,7 +1,7 @@
 version: "3"
 services:
   p-ce:
-    image: portainer/portainer-ce:2.1.1-alpine
+    image: portainer/portainer-ce
     container_name: p-ce
     restart: always
     ports:

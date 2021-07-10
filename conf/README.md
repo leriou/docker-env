@@ -4,8 +4,6 @@
 
 ```
 {
-  "debug": true,
-  "experimental": false,
   "registry-mirrors": [
     "https://a5hmunh5.mirror.aliyuncs.com",
     "https://docker.mirrors.ustc.edu.cn",
@@ -15,4 +13,5 @@
     "https://mirror.ccs.tencentyun.com"
   ]
 }
+
 ```

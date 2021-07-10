@@ -1,4 +1,5 @@
 server.name: kibana
 server.host: "elasticsearch"
+# enterpriseSearch.host: "http://enterprisesearch:3002"
 elasticsearch.hosts: [ "http://elasticsearch:9200" ]
 monitoring.ui.container.elasticsearch.enabled: true

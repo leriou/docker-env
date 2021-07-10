@@ -1,7 +1,7 @@
 version: "3"
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
+    image: elasticsearch:7.13.3
     container_name: elasticsearch
     ports:
       - "9200:9200"
@@ -16,12 +16,12 @@ services:
       - net-common
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.12.0
+    image: kibana:7.13.3
     container_name: kibana
     environment:
       - "xpack.monitoring.ui.container.elasticsearch.enabled"
-    volumes:
-      - ./config/kibana.yml/usr/share/kibana/config/kibana.yml
+    # volumes:
+      # - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - "5601:5601"
     networks:
