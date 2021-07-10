@@ -12,8 +12,6 @@ services:
     volumes:
       - ./data:/usr/share/elasticsearch/data
       - ./config/jvm.options:/usr/share/elasticsearch/config/jvm.options
-    networks:
-      - net-common
 
   kibana:
     image: kibana:7.13.3
@@ -24,8 +22,6 @@ services:
       # - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - "5601:5601"
-    networks:
-      - net-common    
+    depends_on:
+      - elasticsearch
        
-networks:
-  net-common:
