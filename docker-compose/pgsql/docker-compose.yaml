@@ -1,0 +1,13 @@
+version: "3"
+services: 
+    pgsql:
+        image: postgres:13.3
+        environment:
+        - POSTGRES_USER=pguser
+        - POSTGRES_PASSWORD=123456
+        - PGDATA=/var/lib/postgresql/data/pgdata
+        ports:
+        - "127.0.0.1:5432:5432"
+        volumes:
+        - ./data/pgdata:/var/lib/postgresql/data
+        container_name: pgsql

@@ -1,0 +1,11 @@
+version: "3.1"
+services: 
+    mariadb:
+        image: mariadb:10.6.2
+        environment:
+        - MARIADB_ROOT_PASSWORD=123456
+        ports:
+        - "127.0.0.1:3306:3306"
+        volumes:
+        - ./data/maria:/var/lib/mysql
+        container_name: mariadb

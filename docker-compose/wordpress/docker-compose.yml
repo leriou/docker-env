@@ -1,8 +1,7 @@
 version: "3"
 services: 
-    mysql:
-        image: mysql:latest
-        command: --default-authentication-plugin=mysql_native_password
+    mariadb:
+        image: mariadb:10.6.2
         environment:
         - MYSQL_ROOT_PASSWORD=123456
         - MYSQL_DATABASE=wordpress
@@ -10,12 +9,12 @@ services:
         - "127.0.0.1:3306:3306"
         volumes:
         - ./data/mysql:/var/lib/mysql
-        container_name: mysql
+        container_name: mariadb
         
     web:
         image: wordpress:latest
         links:
-        - mysql
+        - mariadb
         environment:
         - WORDPRESS_DB_PASSWORD=123456
         ports:
