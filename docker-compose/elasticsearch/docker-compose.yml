@@ -4,11 +4,15 @@ services:
     image: elasticsearch:7.13.3
     container_name: elasticsearch
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "127.0.0.1:9200:9200"
     environment:
       - "discovery.type=single-node"
       - "node.name=es-node"
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 3000M
     volumes:
       - ./data:/usr/share/elasticsearch/data
       - ./config/jvm.options:/usr/share/elasticsearch/config/jvm.options
@@ -16,12 +20,17 @@ services:
   kibana:
     image: kibana:7.13.3
     container_name: kibana
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
     environment:
       - "xpack.monitoring.ui.container.elasticsearch.enabled"
     # volumes:
       # - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
-      - "5601:5601"
+      - "127.0.0.1:5601:5601"
     depends_on:
       - elasticsearch
        

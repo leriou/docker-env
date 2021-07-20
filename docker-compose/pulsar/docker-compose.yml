@@ -6,8 +6,8 @@ services:
     command: bin/pulsar standalone
     hostname: pulsar
     ports:
-      - "18081:8080"
-      - "6650:6650"
+      - "127.0.0.1:18081:8080"
+      - "127.0.0.1:6650:6650"
     restart: unless-stopped
     volumes:
       - "./data/pulsar:/pulsar/data"
@@ -15,8 +15,8 @@ services:
     image: apachepulsar/pulsar-manager:latest
     container_name: "pulsar-manager"
     ports:
-      - "9527:9527"
-      - "7750:7750"
+      - "127.0.0.1:9527:9527"
+      - "127.0.0.1:7750:7750"
     depends_on:
       - pulsar
     links:
@@ -27,7 +27,7 @@ services:
       REDIRECT_HOST: "http://127.0.0.1"
       REDIRECT_PORT: "9527"
       DRIVER_CLASS_NAME: "org.postgresql.Driver"
-      URL: "jdbc:postgresql://127.0.0.1:5432/pulsar_manager"
-      USERNAME: "pulsar"
-      PASSWORD: "pulsar"
+      URL: "jdbc:postgresql://pgsql:5432/pulsar_manager"
+      USERNAME: "pguser"
+      PASSWORD: "123456"
       LOG_LEVEL: "DEBUG"

@@ -4,7 +4,7 @@ services:
     image: neo4j
     container_name: neo4j
     ports:
-      - "7474:7474"
-      - "7687:7687"
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
     volumes:
       - ./data:/data
