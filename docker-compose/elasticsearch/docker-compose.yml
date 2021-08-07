@@ -1,7 +1,7 @@
 version: "3"
 services:
   elasticsearch:
-    image: elasticsearch:7.13.3
+    image: elasticsearch:7.13.4
     container_name: elasticsearch
     ports:
       - "127.0.0.1:9200:9200"
@@ -18,13 +18,13 @@ services:
       - ./config/jvm.options:/usr/share/elasticsearch/config/jvm.options
 
   kibana:
-    image: kibana:7.13.3
+    image: kibana:7.13.4
     container_name: kibana
     deploy:
       resources:
         limits:
-          cpus: '0.50'
-          memory: 512M
+          cpus: '0.80'
+          memory: 768M
     environment:
       - "xpack.monitoring.ui.container.elasticsearch.enabled"
     # volumes:

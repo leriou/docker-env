@@ -6,10 +6,3 @@ services:
     ports:
       - "127.0.0.1:8080:8080"
       - "127.0.0.1:8081:8081"
-    # volumes:
-      # - "../../../tools/flink-1.12.4:/opt/zeppelin/flink-1.12.4"
-  zeppelin2:
-    image: zeppelin-my:latest
-    container_name: zeppelin2
-    ports:
-      - "127.0.0.1:8082:8080"

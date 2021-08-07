@@ -1,12 +1,10 @@
-version: "3"
+version: '3.1'
 services:
   zookeeper:
     container_name: zk3
     image: "docker.io/bitnami/zookeeper:3"
     ports:
-      - "2181:2181"
-    volumes:
-      - "zookeeper_data:/bitnami"
+      - "127.0.0.1:2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
   kafka:
@@ -14,16 +12,18 @@ services:
     container_name: kafka2.8
     ports:
       - "127.0.0.1:9092:9092"
-    volumes:
-      - "kafka_data:/bitnami"
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper  
-
-volumes:
-  zookeeper_data:
-    driver: local
-  kafka_data:
-    driver: local
+  kafkaMonitor:
+    image: "leriou/kafka-map:latest"
+    container_name: kafka-map
+    ports:
+      - "127.0.0.1:8082:8080"
+    environment:
+      - DEFAULT_USERNAME=admin
+      - DEFAULT_PASSWORD=admin
+    depends_on:
+      - kafka  

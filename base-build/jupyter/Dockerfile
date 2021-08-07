@@ -1,4 +1,4 @@
-FROM jupyter/tensorflow-notebook
+FROM jupyter/minimal-notebook:d39fb37995ce
 
 WORKDIR /work
 
