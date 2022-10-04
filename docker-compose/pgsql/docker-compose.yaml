@@ -1,7 +1,7 @@
 version: "3"
 services: 
     pgsql:
-        image: postgres:13.3
+        image: postgres:14.3
         environment:
         - POSTGRES_USER=pguser
         - POSTGRES_PASSWORD=123456
